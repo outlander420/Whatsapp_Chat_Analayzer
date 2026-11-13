@@ -1,0 +1,12 @@
+24/02/2023, 09:15 - Messages and calls are end-to-end encrypted.
+24/02/2023, 09:15 - Alice created group "Project Team"
+24/02/2023, 09:16 - Alice: Good morning team! Meeting at 10.
+24/02/2023, 09:17 - Bob: Morning Alice 👋
+24/02/2023, 09:18 - Bob: <Media omitted>
+24/02/2023, 09:20 - Alice: Here is the doc https://example.com/doc and my mail alice@example.com
+24/02/2023, 09:21 - Carol: Thanks! My number is +91 98765 43210
+24/02/2023, 09:22 - Bob: Carol was added
+24/02/2023, 09:30 - Carol: 🔥🔥 let's ship it
+24/02/2023, 10:45 - Alice: <Media omitted>
+24/02/2023, 11:00 - Bob: Missed voice call
+24/02/2023, 11:05 - Alice: ok

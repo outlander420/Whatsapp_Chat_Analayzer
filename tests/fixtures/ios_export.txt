@@ -1,0 +1,9 @@
+[24/02/2023, 09:15:34] Alice: Good morning team! Meeting at 10.
+[24/02/2023, 09:17:02] Bob: Morning Alice 👋
+[24/02/2023, 09:18:45] Bob: <Media omitted>
+[24/02/2023, 09:20:11] Alice: Here is the doc https://example.com/doc and my mail alice@example.com
+[24/02/2023, 12:21:56] Carol: Thanks! My number is +91 98765 43210
+[24/02/2023, 13:30:20] Carol: 🔥🔥 let's ship it
+[24/02/2023, 14:45:09] Alice: image omitted
+[24/02/2023, 15:00:41] Bob: video omitted
+[24/02/2023, 15:05:12] Alice: ok

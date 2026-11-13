@@ -1,0 +1,78 @@
+{
+  "project": "WhatsApp_Chat_Analyzer",
+  "updated": "2026-11-13",
+  "features": [
+    {
+      "id": "wca-001",
+      "title": "Multi-format chat parser",
+      "behavior": "preprocessor.preprocess() parses Android 24h, Android 12h AM/PM, and iOS export formats into a normalized DataFrame (user, message, date + derived columns); system messages map to 'group_notification'",
+      "verification": ".venv/bin/pytest tests/test_preprocessor.py -q",
+      "state": "passing",
+      "priority": "high",
+      "evidence": "pytest tests/test_preprocessor.py: 7 passed (all 3 formats parse, multiline join, ValueError, derived columns)"
+    },
+    {
+      "id": "wca-002",
+      "title": "Format-aware media-marker handling",
+      "behavior": "Media/system-marker rows are detected across formats (Android '<Media omitted>', iOS '<Media omitted>' variants and omitted-message lines) and excluded from word/emoji analytics while counted in stats",
+      "verification": ".venv/bin/pytest tests/test_helper.py -q",
+      "state": "passing",
+      "priority": "high",
+      "evidence": "pytest tests/test_helper.py: media counts 3 (android_24h) and 3 (ios_export); 'omitted' excluded from common words"
+    },
+    {
+      "id": "wca-003",
+      "title": "emoji v2 compatibility",
+      "behavior": "emoji_helper() extracts emojis using the emoji v2 API (emoji.emoji_list / EMOJI_DATA), working on emoji>=2.0",
+      "verification": ".venv/bin/pytest tests/test_helper.py -q",
+      "state": "passing",
+      "priority": "high",
+      "evidence": "pytest tests/test_helper.py::test_emoji_helper_v2 passed on emoji==2.16.0"
+    },
+    {
+      "id": "wca-004",
+      "title": "PII redaction toggle (default ON)",
+      "behavior": "app.py sidebar exposes a redaction checkbox defaulting to ON; when enabled, phone numbers, emails, and URLs are masked in messages before any analysis or display",
+      "verification": ".venv/bin/pytest tests/test_redaction.py -q",
+      "state": "passing",
+      "priority": "high",
+      "evidence": "pytest tests/test_redaction.py: 6 passed; app.py checkbox value=True"
+    },
+    {
+      "id": "wca-005",
+      "title": "Cached preprocessing",
+      "behavior": "app.py wraps preprocessing in @st.cache_data so re-runs do not re-parse the upload",
+      "verification": "grep @st.cache_data app.py && .venv/bin/pytest -q",
+      "state": "passing",
+      "priority": "medium",
+      "evidence": "grep @st.cache_data app.py OK; full suite green"
+    },
+    {
+      "id": "wca-006",
+      "title": "Pinned dependencies + Heroku removal",
+      "behavior": "requirements.txt pins exact versions; Procfile and setup.sh removed",
+      "verification": "test ! -f Procfile && test ! -f setup.sh && grep -c '==' requirements.txt",
+      "state": "passing",
+      "priority": "medium",
+      "evidence": "Procfile/setup.sh absent; requirements.txt has 8 exact pins"
+    },
+    {
+      "id": "wca-007",
+      "title": "Synthetic fixtures",
+      "behavior": "tests/fixtures contains synthetic Android 24h, Android 12h AM/PM, and iOS chat exports covering users, system messages, media markers, links, emojis, and PII",
+      "verification": "ls tests/fixtures && .venv/bin/pytest -q",
+      "state": "passing",
+      "priority": "high",
+      "evidence": "tests/fixtures/{android_24h,android_12h,ios_export}.txt present; suite green"
+    },
+    {
+      "id": "wca-008",
+      "title": "Harness onboarding",
+      "behavior": "Project has AGENTS.md, init.sh, feature_list.json, progress.md, DECISIONS.md, FLOW.md; init.sh runs baseline verification from scratch",
+      "verification": "./init.sh",
+      "state": "passing",
+      "priority": "high",
+      "evidence": "AGENTS.md, init.sh, feature_list.json, progress.md, DECISIONS.md, FLOW.md, pytest.ini present; ./init.sh run below"
+    }
+  ]
+}
